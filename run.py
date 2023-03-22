@@ -68,3 +68,7 @@ class Tag(db.Model):
 
 admin = Admin(app, name='Мой блог', template_mode='bootstrap3')
 admin.add_view(ModelView(User, db.session, name='Пользователь'))
+admin.add_view(ModelView(User, db.session, name='Пользователь'))
+admin.add_view(ModelView(Post, db.session, name='Статьи'))
+admin.add_view(ModelView(Comment, db.session, name='Комментарии'))
+admin.add_view(ModelView(Tag, db.session, name='Теги'))

@@ -3,6 +3,9 @@ from datetime import datetime
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+
 app = Flask(__name__)
 app.config['FLASK_ENV'] = 'development'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
@@ -61,3 +64,7 @@ class Tag(db.Model):
     name = db.Column(db.Text(200), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=True)
+
+
+admin = Admin(app, name='Мой блог', template_mode='bootstrap3')
+admin.add_view(ModelView(User, db.session, name='Пользователь'))
